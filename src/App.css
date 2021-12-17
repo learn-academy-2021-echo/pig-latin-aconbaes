@@ -1,27 +1,23 @@
 body {
   margin: 1rem;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Times New Roman', serif;
   text-align: center;
 }
-
 h1 {
   font-size: 4rem;
 }
-
 button {
+  background-color: rgb(72, 179, 179);
   margin: 1rem;
   border-radius: 0.5rem;
   padding: 1rem;
 }
-
 footer {
   padding: 2rem;
 }
-
 .butcherPig {
   width: 12rem;
 }
-
 .userInput {
   border-radius: .5rem;
   font-size: 1rem;
@@ -29,14 +25,12 @@ footer {
   width: 20rem;
   text-align: center;
 }
-
 .inputArea {
   background-color: #606060;
-  color: #fff;
-  border-radius: .5rem;
+  color: rgb(255, 255, 255);
+  border-radius: .25rem;
   padding: 1rem;
 }
-
 @media only screen and (max-width: 650px) {
   h1 {
     font-size: 2rem;

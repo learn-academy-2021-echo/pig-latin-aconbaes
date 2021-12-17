@@ -27,20 +27,39 @@ class App extends Component{
         return vowel === "a" || vowel === "e" || vowel === "i" || vowel === "o" || vowel === "u"
       })
       console.log("vowelsArray:", vowelsArray)
-      // your code here!
 
-        let vowels = ['a','e','i','o','u']
-        let newStr = "";
-        if(vowels.indexOf(currentWord[0]) === 0) {
-            newStr = currentWord + "way";
-            return newStr;
+      // your code here!
+      // create a variable using regular expressions with all of the vowels, that are case insensitive
+        let vowels = [/[aeiou]/i]
+        let firstMatch = currentWord.match(/[aieou]/i) || 0;
+        let vowel = currentWord.indexOf(firstMatch[0]);
+        let yChar = currentWord.indexOf('y')
+        //search to see if the first letter of the current word is a vowel, if so, return the word + "way"
+        if(vowel === 0) {
+          return currentWord + "way";
         }
-        else {
-            let firstMatch = currentWord.match(/[aieou]/g) || 0;
-            let vowel = currentWord.indexOf(firstMatch[0]);
-            newStr = currentWord.substring(vowel) + currentWord.substring(0, vowel) + "ay";
-            return newStr;
-            
+        //search to see if the first index of the word is "q", if so return the word, up to the 2nd vowel (this removes the q + u), and return current 
+        else if(currentWord[0] === 'q'){
+          return currentWord.substring(vowel + 1) + currentWord.substring(0, vowel) +'ay'
+        //search to see if the second letter of the current word is q, if so, return the current word up to the vowel + 1, and append const1 (usually s), q, and the next vowel
+
+        }else if (currentWord[1] === 'q'){
+          return currentWord.substring(vowel + 1) + currentWord.substring(0, vowel + 1) + 'ay'
+
+        //search to see if the first letter of the current word is y
+        //if so, return the substring up to the first vowel after y, and append to the end of the sliced currentWord the characters up to the yChar
+        }else if (yChar === 0){
+          return currentWord.substring(yChar + 1) + currentWord.substring(0, yChar) + "ay"
+        
+        //if the word does not contain values found in vowel, and does contain a y
+        //return the substring up to the y character, and append the substring up to
+        }else if (currentWord.match(vowels) !== true && currentWord.match('y')){
+          return currentWord.substring(yChar) + currentWord.substring(0, yChar) +'ay'
+
+        }else{
+          return currentWord.substring(vowel) + currentWord.substring(0, vowel) + "ay";
+      
+          
         }
       // Remember: console.log is your friend :)
       // ACTION ITEM: change the value of currentWord to the name of whatever variable you made containing your Pig Latin'd word
@@ -97,7 +116,8 @@ class App extends Component{
           <button onClick={this.restartGame}>Clear</button>
         </div>
         <p>{this.state.phraseTranslated}</p>
-        <footer>Coded by ~your name here~</footer>
+        <footer>Coded by Robert Calpito and Deon Franklin</footer>
+      
       </>
     )
   }
